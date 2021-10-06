@@ -11,14 +11,20 @@ app.use(express.urlencoded({ extended: true }));
 // parse incoming JSON data
 app.use(express.json());
 
+app.use(express.static('public'));
+
 function filterByQuery(query, animalsArray) {
+   // animalsArray is the JSON that has the whole 'database'
    let personalityTraitsArray = [];
    // Note that we save the animalsArray as filteredResults here:
    let filteredResults = animalsArray;
-
+   // this personalityTraitsArray processes queries (parameter in line 14) where the route has 'AND' (&) condition
+   // to select multiple personality traits; therefore, the first forEach cycle filters for the first element
+   // 'trait' in the array, then in the next forEach cycle, 'sub'-filters in the same array for the
+   // second element, next 'trait', and so on...
    if (query.personalityTraits) {
       // Save personalityTraits as a dedicated array.
-      // If personalityTraits is a string, place it into a new array and save.
+      // If personalityTraits is a string, *converts* it into a new array and save.
       if (typeof query.personalityTraits === 'string') {
          personalityTraitsArray = [query.personalityTraits];
       } else {
@@ -81,6 +87,18 @@ function validateAnimal(animal) {
    return true;
 }
 
+app.get('/', (req, res) => {
+   res.sendFile(path.join(__dirname, './public/index.html'));
+});
+
+app.get('/animals', (req, res) => {
+   res.sendFile(path.join(__dirname, './public/animals.html'));
+});
+
+app.get('/zookeepers', (req, res) => {
+   res.sendFile(path.join(__dirname, './public/zookeepers.html'));
+});
+
 app.get('/api/animals', (req, res) => {
    let results = animals;
    if (req.query) {
@@ -111,6 +129,10 @@ app.post('/api/animals', (req, res) => {
       const animal = createNewAnimal(req.body, animals);
       res.json(req.body);
    }
+});
+
+app.get('*', (req, res) => {
+   res.sendFile(path.join(__dirname, './public/index.html'));
 });
 
 app.listen(PORT, () => {
