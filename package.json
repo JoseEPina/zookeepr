@@ -1,24 +1,27 @@
 {
-  "name": "zookeepr",
-  "version": "1.0.0",
-  "description": "",
-  "main": "server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/JoseEPina/zookeepr.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/JoseEPina/zookeepr/issues"
-  },
-  "homepage": "https://github.com/JoseEPina/zookeepr#readme",
-  "dependencies": {
-    "express": "^4.17.1"
-  }
+   "name": "zookeepr",
+   "version": "1.0.0",
+   "description": "",
+   "main": "server.js",
+   "scripts": {
+      "test": "jest",
+      "start": "node server.js"
+   },
+   "repository": {
+      "type": "git",
+      "url": "git+https://github.com/JoseEPina/zookeepr.git"
+   },
+   "keywords": [],
+   "author": "",
+   "license": "ISC",
+   "bugs": {
+      "url": "https://github.com/JoseEPina/zookeepr/issues"
+   },
+   "homepage": "https://github.com/JoseEPina/zookeepr#readme",
+   "dependencies": {
+      "express": "^4.17.1"
+   },
+   "devDependencies": {
+      "jest": "^27.2.4"
+   }
 }
